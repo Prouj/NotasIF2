@@ -14,8 +14,16 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let novaMateria = Materia(context: viewContext)
+            novaMateria.iD = UUID()
+            novaMateria.mediaAtual = 0
+            novaMateria.mediaFinal = 0
+            novaMateria.nome = "Caquita"
+            novaMateria.notaAF = 0
+            novaMateria.notaFaltando = 0
+            novaMateria.notaN1 = 0
+            novaMateria.notaN2 = 0
+            
         }
         do {
             try viewContext.save()

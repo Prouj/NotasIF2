@@ -13,7 +13,7 @@ struct NotaIF2App: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ListMateriaView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

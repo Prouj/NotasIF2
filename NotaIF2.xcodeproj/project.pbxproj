@@ -8,13 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		A40FC17B25D1617600DF2267 /* NotaIF2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC17A25D1617600DF2267 /* NotaIF2App.swift */; };
-		A40FC17D25D1617600DF2267 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC17C25D1617600DF2267 /* ContentView.swift */; };
 		A40FC17F25D1617800DF2267 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A40FC17E25D1617800DF2267 /* Assets.xcassets */; };
 		A40FC18225D1617800DF2267 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A40FC18125D1617800DF2267 /* Preview Assets.xcassets */; };
 		A40FC18425D1617800DF2267 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC18325D1617800DF2267 /* Persistence.swift */; };
 		A40FC18725D1617800DF2267 /* NotaIF2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A40FC18525D1617800DF2267 /* NotaIF2.xcdatamodeld */; };
 		A40FC19225D1617800DF2267 /* NotaIF2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC19125D1617800DF2267 /* NotaIF2Tests.swift */; };
 		A40FC19D25D1617800DF2267 /* NotaIF2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC19C25D1617800DF2267 /* NotaIF2UITests.swift */; };
+		A40FC1B125D161E600DF2267 /* ListMateriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC1B025D161E600DF2267 /* ListMateriaView.swift */; };
+		A40FC1B925D161F700DF2267 /* ListMateriaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC1B825D161F700DF2267 /* ListMateriaCell.swift */; };
+		A40FC1BE25D1621400DF2267 /* MateriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC1BD25D1621400DF2267 /* MateriaView.swift */; };
+		A40FC1C325D1624000DF2267 /* SaveMateriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC1C225D1624000DF2267 /* SaveMateriaView.swift */; };
+		A40FC1CC25D16A0300DF2267 /* Materia+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC1CA25D16A0300DF2267 /* Materia+CoreDataClass.swift */; };
+		A40FC1CD25D16A0300DF2267 /* Materia+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC1CB25D16A0300DF2267 /* Materia+CoreDataProperties.swift */; };
+		A40FC1D525D1719C00DF2267 /* MateriaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC1D425D1719C00DF2267 /* MateriaViewModel.swift */; };
+		A40FC1DD25D1DE8600DF2267 /* EditMateriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC1DC25D1DE8600DF2267 /* EditMateriaView.swift */; };
+		A40FC1F725D2ADA800DF2267 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A40FC1F625D2ADA800DF2267 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +45,6 @@
 /* Begin PBXFileReference section */
 		A40FC17725D1617600DF2267 /* NotaIF2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotaIF2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A40FC17A25D1617600DF2267 /* NotaIF2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotaIF2App.swift; sourceTree = "<group>"; };
-		A40FC17C25D1617600DF2267 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A40FC17E25D1617800DF2267 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A40FC18125D1617800DF2267 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A40FC18325D1617800DF2267 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -49,6 +56,15 @@
 		A40FC19825D1617800DF2267 /* NotaIF2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotaIF2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A40FC19C25D1617800DF2267 /* NotaIF2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotaIF2UITests.swift; sourceTree = "<group>"; };
 		A40FC19E25D1617800DF2267 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A40FC1B025D161E600DF2267 /* ListMateriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMateriaView.swift; sourceTree = "<group>"; };
+		A40FC1B825D161F700DF2267 /* ListMateriaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMateriaCell.swift; sourceTree = "<group>"; };
+		A40FC1BD25D1621400DF2267 /* MateriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateriaView.swift; sourceTree = "<group>"; };
+		A40FC1C225D1624000DF2267 /* SaveMateriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMateriaView.swift; sourceTree = "<group>"; };
+		A40FC1CA25D16A0300DF2267 /* Materia+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Materia+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A40FC1CB25D16A0300DF2267 /* Materia+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Materia+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A40FC1D425D1719C00DF2267 /* MateriaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateriaViewModel.swift; sourceTree = "<group>"; };
+		A40FC1DC25D1DE8600DF2267 /* EditMateriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMateriaView.swift; sourceTree = "<group>"; };
+		A40FC1F625D2ADA800DF2267 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +115,16 @@
 		A40FC17925D1617600DF2267 /* NotaIF2 */ = {
 			isa = PBXGroup;
 			children = (
+				A40FC1AF25D161BF00DF2267 /* ViewModel */,
+				A40FC1AE25D161A700DF2267 /* View */,
+				A40FC1AD25D1619F00DF2267 /* Model */,
 				A40FC17A25D1617600DF2267 /* NotaIF2App.swift */,
-				A40FC17C25D1617600DF2267 /* ContentView.swift */,
 				A40FC17E25D1617800DF2267 /* Assets.xcassets */,
 				A40FC18325D1617800DF2267 /* Persistence.swift */,
 				A40FC18825D1617800DF2267 /* Info.plist */,
 				A40FC18525D1617800DF2267 /* NotaIF2.xcdatamodeld */,
 				A40FC18025D1617800DF2267 /* Preview Content */,
+				A40FC1F625D2ADA800DF2267 /* .gitignore */,
 			);
 			path = NotaIF2;
 			sourceTree = "<group>";
@@ -134,6 +153,35 @@
 				A40FC19E25D1617800DF2267 /* Info.plist */,
 			);
 			path = NotaIF2UITests;
+			sourceTree = "<group>";
+		};
+		A40FC1AD25D1619F00DF2267 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A40FC1CA25D16A0300DF2267 /* Materia+CoreDataClass.swift */,
+				A40FC1CB25D16A0300DF2267 /* Materia+CoreDataProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A40FC1AE25D161A700DF2267 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A40FC1B025D161E600DF2267 /* ListMateriaView.swift */,
+				A40FC1B825D161F700DF2267 /* ListMateriaCell.swift */,
+				A40FC1BD25D1621400DF2267 /* MateriaView.swift */,
+				A40FC1C225D1624000DF2267 /* SaveMateriaView.swift */,
+				A40FC1DC25D1DE8600DF2267 /* EditMateriaView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A40FC1AF25D161BF00DF2267 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A40FC1D425D1719C00DF2267 /* MateriaViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A40FC18225D1617800DF2267 /* Preview Assets.xcassets in Resources */,
+				A40FC1F725D2ADA800DF2267 /* .gitignore in Resources */,
 				A40FC17F25D1617800DF2267 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,10 +314,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A40FC1CD25D16A0300DF2267 /* Materia+CoreDataProperties.swift in Sources */,
 				A40FC18425D1617800DF2267 /* Persistence.swift in Sources */,
-				A40FC17D25D1617600DF2267 /* ContentView.swift in Sources */,
+				A40FC1DD25D1DE8600DF2267 /* EditMateriaView.swift in Sources */,
+				A40FC1B925D161F700DF2267 /* ListMateriaCell.swift in Sources */,
+				A40FC1B125D161E600DF2267 /* ListMateriaView.swift in Sources */,
+				A40FC1C325D1624000DF2267 /* SaveMateriaView.swift in Sources */,
 				A40FC17B25D1617600DF2267 /* NotaIF2App.swift in Sources */,
 				A40FC18725D1617800DF2267 /* NotaIF2.xcdatamodeld in Sources */,
+				A40FC1CC25D16A0300DF2267 /* Materia+CoreDataClass.swift in Sources */,
+				A40FC1D525D1719C00DF2267 /* MateriaViewModel.swift in Sources */,
+				A40FC1BE25D1621400DF2267 /* MateriaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
