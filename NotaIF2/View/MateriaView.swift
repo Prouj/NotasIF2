@@ -9,7 +9,12 @@ import SwiftUI
 
 struct MateriaView: View {
  
+    @Environment(\.managedObjectContext) private var viewContext
+    
     var dataMateria = Materia()
+    
+    @ObservedObject private var materiaViewModel: MateriaViewModel = MateriaViewModel()
+    @State var edit = false
     
     var body: some View {
         VStack {
@@ -20,9 +25,10 @@ struct MateriaView: View {
                         .fontWeight(.medium)
                         .foregroundColor(.black)
                         .font(.system(size: 24))
+                        .multilineTextAlignment(.center)
                         .padding(.bottom, 10)
                         .padding(.horizontal, 20)
-
+                        
                     HStack(spacing: 20) {
                             VStack {
                                 Text("Média Atual")
@@ -32,13 +38,13 @@ struct MateriaView: View {
                                     
                                 Spacer()
                                 
-                                Text("???")
+                                Text(String(format: "%.2f", dataMateria.mediaAtual))
                                     .fontWeight(.medium)
                                     .foregroundColor(.black)
                                     .font(.system(size: 17))
                                     
                             }.frame(width: 100, height: 34, alignment: .center)
-                        .shadow(color: Color.black.opacity(0.12), radius: 4, x: 0, y: 2)
+                            .shadow(color: Color.black.opacity(0.12), radius: 4, x: 0, y: 2)
                     
                             VStack {
                                 
@@ -49,7 +55,7 @@ struct MateriaView: View {
                                 
                                 Spacer()
                                 
-                                Text("???")
+                                Text(String(format: "%.2f", dataMateria.notaFaltando))
                                     .fontWeight(.medium)
                                     .foregroundColor(.black)
                                     .font(.system(size: 17))
@@ -59,14 +65,14 @@ struct MateriaView: View {
                         
                         VStack {
                             
-                            Text("Média Final")
+                            Text("Média AF")
                                 .fontWeight(.medium)
                                 .foregroundColor(.black)
                                 .font(.system(size: 15))
                             
                             Spacer()
                             
-                            Text("???")
+                            Text(String(format: "%.2f", dataMateria.mediaFinal))
                                 .fontWeight(.medium)
                                 .foregroundColor(.black)
                                 .font(.system(size: 17))
@@ -129,7 +135,7 @@ struct MateriaView: View {
                 .border(LinearGradient(gradient: Gradient(colors: [.BorderCard1, .BorderCard2]), startPoint: .topLeading, endPoint: .bottom))
                 .cornerRadius(5)
                 .padding(.top, 10)
-//                .padding(.bottom, 10)
+                .padding(.bottom,20)
                 .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 4)
                    
                 Text("Avalição Final:")
@@ -152,37 +158,55 @@ struct MateriaView: View {
 //                .padding(.bottom, 10)
                 .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 4)
                 Spacer()
-                
-    //            Image("Plantin2")
-    //                .resizable()
-    //                .scaledToFit()
-    //                .padding(.bottom, -5)
-    //                .frame(minWidth: 100, idealWidth: 100, maxWidth: 140, minHeight: 160, idealHeight: 160, maxHeight: 200, alignment: .bottom)
+
             }
 
-        }.clipped()
-        .background(Image("Background")
-            .resizable()
-            .edgesIgnoringSafeArea(.all)
-            .scaledToFill()
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        }
+        .clipped()
+        
                 
 //        .navigationBarTitle("Matérias", displayMode: .inline)
         .foregroundColor(.BorderCard2)
         .navigationBarItems(trailing: trailingButton)
-        
-        .edgesIgnoringSafeArea(.vertical)
-        
+        .edgesIgnoringSafeArea(.top)
+        .background(
+            Image("Background")
+                .resizable()
+                .edgesIgnoringSafeArea(.all)
+                .scaledToFill()
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        )
+        .navigate(isActive: $edit, destination: EditMateriaView(editDataMateria: dataMateria))
     }
     
     var trailingButton: some View {
-        NavigationLink(destination: EditMateriaView(editDataMateria: dataMateria)) {
-            Image(systemName: "ellipsis").imageScale(.large)
+        Menu {
+            Button(action: { print("deletei")
+                materiaViewModel.delete(delete: dataMateria, viewContext: viewContext)
+            }) {
+                
+                Label("Deletar", systemImage: "trash")
+            }
+            Button(action: { edit = true }) {
+                
+                Label("Editar", systemImage: "pencil")
+            }
+        } label: {
+            Image(systemName: "ellipsis")
         }
         .foregroundColor(.actionColor)
     }
     
 }
+
+extension View {
+
+    func navigate<Destination: View>(isActive: Binding<Bool>, destination: Destination) -> some View {
+        background(NavigationLink(destination: destination, isActive: isActive, label: { Color.clear }))
+    }
+
+}
+
 
 struct RoundedCorner: Shape {
 

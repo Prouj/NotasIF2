@@ -14,6 +14,10 @@ struct ListaMateriaCell: View {
     
    var dataMateria = Materia()
     
+    var porcentagem: CGFloat {
+       return (CGFloat(dataMateria.progress))
+    }
+    
     var body: some View {
         ZStack {
             HStack {
@@ -26,8 +30,18 @@ struct ListaMateriaCell: View {
 
                 Spacer()
                 ZStack {
-                    Progress()
-
+                    ZStack {
+                        Circle()
+                            .fill(Color.cardGrad1)
+                            .frame(width: 50, height: 50)
+                            .overlay(
+                        Circle()
+                            .trim(from: 0, to: porcentagem * 0.1)
+                            .stroke(style: StrokeStyle(lineWidth: 4))
+                            .foregroundColor(.NotaBoa))
+                        Text(String(format: "%.2f", porcentagem)).font(.system(size:15)).fontWeight(.heavy).foregroundColor(.black)
+            //            animation(.easeIn)
+                    }
                 }.padding(.trailing, 20)
                 
             }
@@ -69,26 +83,26 @@ struct ListaMateriaCell: View {
 //    }
 //}
 
-struct Progress: View {
-    
-    var porcentagem: CGFloat = 0
-//    CGFloat(ListaMateriaCell().dataMateria.notaN1)
-    
-    var body: some View {
-        ZStack {
-            Circle()
-                .fill(Color.cardGrad1)
-                .frame(width: 50, height: 50)
-                .overlay(
-            Circle()
-                .trim(from: 0, to: porcentagem * 0.1)
-                .stroke(style: StrokeStyle(lineWidth: 4))
-                .foregroundColor(.NotaBoa))
-            Text(String(format: "%.0f", porcentagem)).font(.system(size:17)).fontWeight(.heavy).foregroundColor(.black)
-//            animation(.easeIn)
-        }
-    }
-}
+//struct Progress: View {
+//
+//    var porcentagem: CGFloat {
+//       return (CGFloat(ListaMateriaCell().dataMateria.progress))
+//    }
+//    var body: some View {
+//        ZStack {
+//            Circle()
+//                .fill(Color.cardGrad1)
+//                .frame(width: 50, height: 50)
+//                .overlay(
+//            Circle()
+//                .trim(from: 0, to: porcentagem * 0.1)
+//                .stroke(style: StrokeStyle(lineWidth: 4))
+//                .foregroundColor(.NotaBoa))
+//            Text(String(format: "%.2f", porcentagem)).font(.system(size:17)).fontWeight(.heavy).foregroundColor(.black)
+////            animation(.easeIn)
+//        }
+//    }
+//}
 
 struct ListaMateriaCell_Previews: PreviewProvider {
     static var previews: some View {
@@ -107,6 +121,7 @@ extension Color {
     static let NotaBoa = Color("NotaBoa")
     static let BorderCard1 = Color("BorderCard1")
     static let BorderCard2 = Color("BorderCard2")
+    static let TextFieldColor = Color("textFieldColor")
 }
 
 

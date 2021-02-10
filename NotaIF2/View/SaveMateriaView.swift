@@ -6,19 +6,39 @@
 //
 
 import SwiftUI
+import Combine
+import ToastUI
 
 struct SaveMateriaView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @Environment(\.presentationMode) var presentationMode
     @State private var materia: Materia = Materia()
-    
     @ObservedObject private var materiaViewModel: MateriaViewModel = MateriaViewModel()
     
     @State public var nome = ""
     @State var notaN1 = ""
     @State var notaN2 = ""
     @State var notaAF = ""
+    @State var presentingToast = false
+    
+    var notaN1FormattedTeste: Double {
+            return (Double(notaN1) ?? 0) / 100
+    }
+    
+    var notaN2FormattedTeste: Double {
+            return (Double(notaN2) ?? 0) / 100
+    }
+    
+    var notaAFFormattedTeste: Double {
+            return (Double(notaAF) ?? 0) / 100
+    }
+    
+    var notaN1Formatted: Double = 0
+    
+    var notaN2Formatted: Double = 0
+    
+    var notaAFFormatted: Double = 0
     
     var body: some View {
         ZStack() {
@@ -28,6 +48,12 @@ struct SaveMateriaView: View {
                         .font(.system(size: 20, weight: .regular, design: .default))
                         .foregroundColor(.black)
                     TextField("Entre com o nome da matéria aqui ...", text: $nome)
+                        .disableAutocorrection(true)
+                        .accentColor(.TextFieldColor)
+                        .foregroundColor(.TextFieldColor)
+                        .onReceive(Just(nome)) { _ in if nome.count > 30 {
+                            nome = String(nome.prefix(30))
+                        }}
                 }
                 .padding(.top, 20)
                 .padding(.bottom, 10)
@@ -38,7 +64,19 @@ struct SaveMateriaView: View {
                     Text("Primeira Etapa(N1):")
                         .font(.system(size: 20, weight: .regular, design: .default))
                         .foregroundColor(.black)
-                    TextField("Entre com sua nota aqui ...", text: $notaN1)
+                    
+                    ZStack(alignment: .leading){
+                        Text("\(notaN1FormattedTeste, specifier: "%.2f")").foregroundColor(.TextFieldColor)
+                        TextField("", text: $notaN1).keyboardType(.numberPad)
+                            .disableAutocorrection(true)
+                            .accentColor(.clear)
+                            .foregroundColor(.clear)
+                            .onReceive(Just(notaN1)) { _ in if notaN1.count > 4 {
+                                notaN1 = String(notaN1.prefix(4))
+                            }}
+                        
+                    }
+                    
                 }.padding(.bottom, 10)
                 .padding(.leading, 20)
                 .padding(.trailing, 20)
@@ -47,7 +85,17 @@ struct SaveMateriaView: View {
                     Text("Segunda Etapa(N2):")
                         .font(.system(size: 20, weight: .regular, design: .default))
                         .foregroundColor(.black)
-                    TextField("Entre com sua nota aqui ...", text: $notaN2)
+                    ZStack(alignment: .leading){
+                        Text("\(notaN2FormattedTeste, specifier: "%.2f")").foregroundColor(.TextFieldColor)
+                        TextField("", text: $notaN2).keyboardType(.numberPad)
+                            .disableAutocorrection(true)
+                            .accentColor(.clear)
+                            .foregroundColor(.clear)
+                            .onReceive(Just(notaN2)) { _ in if notaN2.count > 4 {
+                                notaN2 = String(notaN2.prefix(4))
+                            }}
+                        
+                    }
                 }.padding(.bottom, 10)
                 .padding(.leading, 20)
                 .padding(.trailing, 20)
@@ -56,7 +104,17 @@ struct SaveMateriaView: View {
                     Text("Avalição Final(AF):")
                         .font(.system(size: 20, weight: .regular, design: .default))
                         .foregroundColor(.black)
-                    TextField("Entre com sua nota aqui ...", text: $notaAF)
+                    
+                    ZStack(alignment: .leading){
+                        Text("\(notaAFFormattedTeste, specifier: "%.2f")").foregroundColor(.TextFieldColor)
+                        TextField("", text: $notaAF).keyboardType(.numberPad)
+                            .disableAutocorrection(true)
+                            .accentColor(.clear)
+                            .foregroundColor(.clear)
+                            .onReceive(Just(notaAF)) { _ in if notaAF.count > 4 {
+                                notaAF = String(notaAF.prefix(4))
+                            }}
+                    }
                 }.padding(.bottom, 10)
                 .padding(.leading, 20)
                 .padding(.trailing, 20)
@@ -67,6 +125,28 @@ struct SaveMateriaView: View {
             
             .navigationTitle("Nova Matéria")
             .navigationBarItems(trailing: trailingButtom)
+            
+            .toast(isPresented: $presentingToast) {
+                  ToastView {
+                    VStack {
+                      Text("A matéria deve ter um nome!\n😐")
+                        .padding(.bottom)
+                        .multilineTextAlignment(.center)
+
+                      Button {
+                        presentingToast = false
+                      } label: {
+                        Text("Entendi")
+                          .bold()
+                          .foregroundColor(.white)
+                          .padding(.horizontal)
+                          .padding(.vertical, 12.0)
+                          .background(Color.accentColor)
+                          .cornerRadius(8.0)
+                      }
+                    }
+                  }.colorScheme(.light)
+            }
             
             
         }.clipped()
@@ -79,13 +159,26 @@ struct SaveMateriaView: View {
     
     var trailingButtom: some View {
         Button(action: {
-            materiaViewModel.save(nome: nome, notaN1: notaN1, notaN2: notaN2, notaAF: notaAF, viewContext: viewContext)
+            if nome.count == 0 {
+                presentingToast = true
+            } else {
+                if notaN1FormattedTeste >= 0 && notaN1FormattedTeste <= 10 && notaN2FormattedTeste >= 0 && notaN2FormattedTeste <= 10 && notaAFFormattedTeste >= 0 && notaAFFormattedTeste <= 10 {
+                    
+                    var notaN1Formatted = notaN1FormattedTeste
+                    var notaN2Formatted = notaN2FormattedTeste
+                    var notaAFFormatted = notaAFFormattedTeste
+                    
+                    materiaViewModel.save(nome: nome, notaN1: notaN1Formatted, notaN2: notaN2Formatted, notaAF: notaAFFormatted, viewContext: viewContext)
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
         }) {
             Text("OK")
             }.foregroundColor(.actionColor)
     }
 
 }
+
 
 struct SaveMateriaView_Previews: PreviewProvider {
     static var previews: some View {

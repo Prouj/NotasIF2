@@ -15,6 +15,7 @@ struct NotaIF2App: App {
         WindowGroup {
             ListMateriaView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.colorScheme, .light)
         }
     }
 }

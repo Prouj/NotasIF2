@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,7 @@
 		A40FC1D525D1719C00DF2267 /* MateriaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC1D425D1719C00DF2267 /* MateriaViewModel.swift */; };
 		A40FC1DD25D1DE8600DF2267 /* EditMateriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC1DC25D1DE8600DF2267 /* EditMateriaView.swift */; };
 		A40FC1F725D2ADA800DF2267 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A40FC1F625D2ADA800DF2267 /* .gitignore */; };
+		A40FC20325D2B9F900DF2267 /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = A40FC20225D2B9F900DF2267 /* ToastUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A40FC20325D2B9F900DF2267 /* ToastUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +202,9 @@
 			dependencies = (
 			);
 			name = NotaIF2;
+			packageProductDependencies = (
+				A40FC20225D2B9F900DF2267 /* ToastUI */,
+			);
 			productName = NotaIF2;
 			productReference = A40FC17725D1617600DF2267 /* NotaIF2.app */;
 			productType = "com.apple.product-type.application";
@@ -264,13 +269,15 @@
 			};
 			buildConfigurationList = A40FC17225D1617600DF2267 /* Build configuration list for PBXProject "NotaIF2" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = pt-BR;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
-				Base,
+				"pt-BR",
 			);
 			mainGroup = A40FC16E25D1617600DF2267;
+			packageReferences = (
+				A40FC20125D2B9F900DF2267 /* XCRemoteSwiftPackageReference "ToastUI" */,
+			);
 			productRefGroup = A40FC17825D1617600DF2267 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -644,6 +651,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A40FC20125D2B9F900DF2267 /* XCRemoteSwiftPackageReference "ToastUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/quanshousio/ToastUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A40FC20225D2B9F900DF2267 /* ToastUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A40FC20125D2B9F900DF2267 /* XCRemoteSwiftPackageReference "ToastUI" */;
+			productName = ToastUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A40FC18525D1617800DF2267 /* NotaIF2.xcdatamodeld */ = {
