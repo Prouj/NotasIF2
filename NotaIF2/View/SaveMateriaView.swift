@@ -13,6 +13,7 @@ struct SaveMateriaView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var presentationMode2
     @State private var materia: Materia = Materia()
     @ObservedObject private var materiaViewModel: MateriaViewModel = MateriaViewModel()
     
@@ -21,6 +22,7 @@ struct SaveMateriaView: View {
     @State var notaN2 = ""
     @State var notaAF = ""
     @State var presentingToast = false
+    @State var presentingToast2 = false
     
     var notaN1FormattedTeste: Double {
             return (Double(notaN1) ?? 0) / 100
@@ -129,12 +131,36 @@ struct SaveMateriaView: View {
             .toast(isPresented: $presentingToast) {
                   ToastView {
                     VStack {
-                      Text("A matéria deve ter um nome!\n😐")
-                        .padding(.bottom)
+                      Text("Olá, antes de salvar dê um nome à matéria.\n🙃")
+                        .padding(.bottom, 10)
+                        .padding(.horizontal, 10)
                         .multilineTextAlignment(.center)
 
                       Button {
                         presentingToast = false
+                      } label: {
+                        Text("Entendi")
+                          .bold()
+                          .foregroundColor(.white)
+                          .padding(.horizontal)
+                          .padding(.vertical, 12.0)
+                          .background(Color.accentColor)
+                          .cornerRadius(8.0)
+                      }
+                    }
+                  }.colorScheme(.light)
+            }
+            
+            .toast(isPresented: $presentingToast2) {
+                  ToastView {
+                    VStack {
+                      Text("Olá, as notas devem ter um valor de 0 a 10.\n🙃")
+                        .padding(.bottom, 10)
+                        .padding(.horizontal, 10)
+                        .multilineTextAlignment(.center)
+
+                      Button {
+                        presentingToast2 = false
                       } label: {
                         Text("Entendi")
                           .bold()
@@ -170,6 +196,8 @@ struct SaveMateriaView: View {
                     
                     materiaViewModel.save(nome: nome, notaN1: notaN1Formatted, notaN2: notaN2Formatted, notaAF: notaAFFormatted, viewContext: viewContext)
                     self.presentationMode.wrappedValue.dismiss()
+                } else {
+                    presentingToast2 = true
                 }
             }
         }) {
