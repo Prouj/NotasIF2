@@ -192,7 +192,7 @@ struct MateriaView: View {
                 Label("Editar", systemImage: "pencil")
             }
         } label: {
-            Image(systemName: "ellipsis")
+            Image(systemName: "ellipsis").imageScale(.large).font(.system(size: 25)).padding(.horizontal, 10)
         }
         .foregroundColor(.actionColor)
     }
