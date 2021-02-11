@@ -53,6 +53,7 @@ class MateriaViewModel: ObservableObject {
         
         var editMateria = edit
         editMateria.iD = UUID()
+        editMateria.nome = nome
         editMateria.notaN1 = notaN1
         editMateria.notaN2 = notaN2
         editMateria.notaAF = notaAF
