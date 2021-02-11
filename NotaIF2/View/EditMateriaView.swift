@@ -66,6 +66,7 @@ struct EditMateriaView: View {
                             .disableAutocorrection(true)
                             .accentColor(.clear)
                             .foregroundColor(.clear)
+                            
                             .onReceive(Just(notaN1)) { _ in if notaN1.count > 4 {
                                 notaN1 = String(notaN1.prefix(4))
                             }}
@@ -132,42 +133,29 @@ struct EditMateriaView: View {
     var trailingButtom: some View {
         Button(action: {
             
+            var notaN1Formatted = editDataMateria.notaN1
+            var notaN2Formatted = editDataMateria.notaN2
+            var notaAFFormatted = editDataMateria.notaAF
+            
             if nome.count == 0 {
                 nome = editDataMateria.nome
             }
             
-            if notaN1.count == 0 && notaN2.count == 0 && notaAF.count == 0 {
-                var notaN1Test: String {
-                   return (String(editDataMateria.notaN1 * 100))
-                }
-                notaN1 = notaN1Test
-                
-                var notaN2Test: String {
-                   return (String(editDataMateria.notaN2 * 100))
-                }
-                notaN2 = notaN2Test
-                
-                var notaAFTest: String {
-                   return (String(editDataMateria.notaAF * 100))
-                }
-                notaAF = notaAFTest
-            } else {
-                if notaN1FormattedTeste >= 0 && notaN1FormattedTeste <= 10 && notaN2FormattedTeste >= 0 && notaN2FormattedTeste <= 10 && notaAFFormattedTeste >= 0 && notaAFFormattedTeste <= 10 {
-                    
-                    var notaN1Formatted = notaN1FormattedTeste
-                    var notaN2Formatted = notaN2FormattedTeste
-                    var notaAFFormatted = notaAFFormattedTeste
-                    
-                    materiaViewModel.editSave(edit: editDataMateria ,nome: nome, notaN1: notaN1Formatted, notaN2: notaN2Formatted, notaAF: notaAFFormatted, viewContext: viewContext)
-                } else {
-                    var notaN1Formatted = editDataMateria.notaN1
-                    var notaN2Formatted = editDataMateria.notaN2
-                    var notaAFFormatted = editDataMateria.notaAF
-                    
-                    materiaViewModel.editSave(edit: editDataMateria ,nome: nome, notaN1: notaN1Formatted, notaN2: notaN2Formatted, notaAF: notaAFFormatted, viewContext: viewContext)
-                }
+            if notaN1.count != 0 && notaN1FormattedTeste >= 0 && notaN1FormattedTeste <= 10 {
+                notaN1Formatted = notaN1FormattedTeste
             }
-//            self.presentationMode.wrappedValue.dismiss()
+            
+            if notaN2.count != 0 && notaN2FormattedTeste >= 0 && notaN2FormattedTeste <= 10  {
+                notaN2Formatted = notaN2FormattedTeste
+            }
+            
+            if notaAF.count != 0 && notaAFFormattedTeste >= 0 && notaAFFormattedTeste <= 10  {
+                notaAFFormatted = notaAFFormattedTeste  
+            }
+            
+            materiaViewModel.editSave(edit: editDataMateria ,nome: nome, notaN1: notaN1Formatted, notaN2: notaN2Formatted, notaAF: notaAFFormatted, viewContext: viewContext)
+            
+            self.presentationMode.wrappedValue.dismiss()
         }) {
             Text("OK")
             }.foregroundColor(.actionColor)
