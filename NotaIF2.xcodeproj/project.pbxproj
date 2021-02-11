@@ -269,7 +269,7 @@
 			};
 			buildConfigurationList = A40FC17225D1617600DF2267 /* Build configuration list for PBXProject "NotaIF2" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = pt-BR;
+			developmentRegion = "pt-BR";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				"pt-BR",
@@ -501,7 +501,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = PauloUchoa.NotaIF2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -523,7 +523,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = PauloUchoa.NotaIF2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
