@@ -47,7 +47,7 @@ struct ListMateriaView: View {
     
     var trailingButtom: some View {
         NavigationLink(destination: SaveMateriaView()) {
-            Image(systemName: "plus").imageScale(.large).font(.system(size: 22))
+            Image(systemName: "plus").imageScale(.large).font(.system(size: 24))
                 .foregroundColor(.actionColor)
         }
     }
