@@ -10,11 +10,11 @@ import CoreData
 
 class MateriaViewModel: ObservableObject {
     
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext) var viewContext
 
     var fetchMaterias: [Materia]?
 
-    func save(nome: String, notaN1: Double, notaN2: Double, notaAF: Double, viewContext: NSManagedObjectContext) {
+    func save(nome: String, notaN1: Double, notaN2: Double, notaAF: Double, viewContext: NSManagedObjectContext) -> Bool {
         
         var novaMateria = Materia(context: viewContext)
         novaMateria.iD = UUID()
@@ -42,14 +42,14 @@ class MateriaViewModel: ObservableObject {
         
         do {
             try viewContext.save()
-            print(novaMateria.progress)
-            
+            return true
         } catch {
             print(error.localizedDescription)
+            return false
         }
     }
     
-    func editSave(edit: Materia, nome: String, notaN1: Double, notaN2: Double, notaAF: Double, viewContext: NSManagedObjectContext) {
+    func editSave(edit: Materia, nome: String, notaN1: Double, notaN2: Double, notaAF: Double, viewContext: NSManagedObjectContext) -> Bool {
         
         var editMateria = edit
         editMateria.iD = UUID()
@@ -83,19 +83,22 @@ class MateriaViewModel: ObservableObject {
         
         do {
             try viewContext.save()
-            print(editMateria.progress)
+            return true
         } catch {
             print(error.localizedDescription)
+            return false
         }
     }
     
-    func delete(delete: Materia, viewContext: NSManagedObjectContext) {
+    func delete(delete: Materia, viewContext: NSManagedObjectContext) -> Bool {
         
         do {
             try viewContext.delete(delete)
             try viewContext.save()
+            return true
         } catch {
             print(error.localizedDescription)
+            return false
         }
     }
 }
