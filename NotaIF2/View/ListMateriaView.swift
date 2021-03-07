@@ -22,13 +22,18 @@ struct ListMateriaView: View {
         NavigationView {
                 ScrollView {
                     LazyVStack {
-                        ForEach(materia) { materia in
-                            NavigationLink(destination: MateriaView(dataMateria: materia)) {
-                            
-                                ListaMateriaCell(dataMateria: materia)
+                        if !materia.isEmpty {
+                            ForEach(materia) { materia in
+                                NavigationLink(destination: MateriaView(dataMateria: materia)) {
+                                
+                                    ListaMateriaCell(dataMateria: materia)
+                                }
                             }
+                        } else {
+                            Text("Você não possui matérias!")
+                                .font(.system(size: 22, weight: .regular, design: .default)).opacity(0.5)
+                                .padding(.vertical, UIScreen.main.bounds.height/3)
                         }
-                        
                     }
                 }.clipped()
                 .background(Image("Background")

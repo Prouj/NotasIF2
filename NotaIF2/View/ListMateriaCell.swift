@@ -37,7 +37,7 @@ struct ListaMateriaCell: View {
                             .overlay(
                         Circle()
                             .trim(from: 0, to: porcentagem * 0.1)
-                            .stroke(style: StrokeStyle(lineWidth: 4))
+                            .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .bevel, miterLimit: 1.0))
                             .foregroundColor(.NotaBoa))
                         Text(String(format: "%.2f", porcentagem)).font(.system(size:15)).fontWeight(.heavy).foregroundColor(.black)
             //            animation(.easeIn)
