@@ -161,44 +161,50 @@ struct MateriaView: View {
                         .padding(.horizontal, 10)
                         .multilineTextAlignment(.center)
 
-                      Button {
+                        HStack {
+                            Button {
 
-                        presentingToast2 = true
-                        presentingToast = false
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            presentingToast2 = false
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                                presentingToast = false
+                              presentingToast2 = true
+                              presentingToast = false
+                              DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                  presentingToast2 = false
+                                  DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                      presentingToast = false
+                                  }
+                              }
+                              DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                  materiaViewModel.delete(delete: dataMateria, viewContext: viewContext)
+                              }
+                                  
+                                     
+                              
+                              
+                            } label: {
+                              Text("Deletar")
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding(.horizontal)
+                                .padding(.vertical, 12.0)
+                                .background(Color.accentColor)
+                                .cornerRadius(8.0)
+                            }
+                            
+                            Button {
+                              presentingToast = false
+                                  
+                              
+                            } label: {
+                              Text("Cancelar")
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding(.horizontal)
+                                .padding(.vertical, 12.0)
+                                .background(Color.accentColor)
+                                .cornerRadius(8.0)
                             }
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            materiaViewModel.delete(delete: dataMateria, viewContext: viewContext)
-                        }
-                            
-                               
-                        
-                        
-                      } label: {
-                        Text("Entendi")
-                          .bold()
-                          .foregroundColor(.white)
-                          .padding(.horizontal)
-                          .padding(.vertical, 12.0)
-                          .background(Color.accentColor)
-                          .cornerRadius(8.0)
-                      }
                     }
                   }.colorScheme(.light)
-            }
-            
-            .toast(isPresented: $presentingToast2) {
-                ToastView{
-                    ZStack {
-                        LottieView(name: "trash", play: $play)
-                        .frame(width: 200, height: 200)
-                        
-                    }
-                }.colorScheme(.light)
             }
 
 
@@ -267,4 +273,3 @@ struct Materia_Previews: PreviewProvider {
         .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
-

@@ -31,8 +31,14 @@ struct ListMateriaView: View {
                             }
                         } else {
                             Text("Você não possui matérias!")
-                                .font(.system(size: 22, weight: .regular, design: .default)).opacity(0.5)
-                                .padding(.vertical, UIScreen.main.bounds.height/3)
+                                .font(.system(size: 22, weight: .regular, design: .default)).opacity(0.6)
+                                .padding(.top, UIScreen.main.bounds.height/3)
+                                .multilineTextAlignment(.center)
+                            Text("Adicione uma nova matéria no '+'")
+                                .font(.system(size: 20, weight: .regular, design: .default)).opacity(0.5)
+                                .padding(.bottom, UIScreen.main.bounds.height/3)
+                                .padding(.horizontal, 1)
+                                .multilineTextAlignment(.center)
                         }
                     }
                 }.clipped()

@@ -135,7 +135,7 @@ struct SaveMateriaView: View {
                   ToastView {
                     VStack {
                         LottieView(name: "error", play: $play)
-                            .frame(width: 75, height: 75)
+                            .frame(width: 50, height: 50)
                       Text("Olá, antes de salvar\n dê um nome à matéria.")
                         .padding(.bottom, 10)
                         .padding(.horizontal, 10)
@@ -162,7 +162,7 @@ struct SaveMateriaView: View {
                   ToastView {
                     VStack {
                         LottieView(name: "error", play: $play)
-                            .frame(width: 75, height: 75)
+                            .frame(width: 50, height: 50)
                       Text("Olá, as notas devem ter\n um valor de 0 a 10.")
                         .padding(.bottom, 10)
                         .padding(.horizontal, 10)
