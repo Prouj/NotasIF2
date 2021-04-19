@@ -27,12 +27,12 @@ class MateriaViewModel: ObservableObject {
         novaMateria.mediaAtual = mediaAtual
         
         if mediaAtual <= 7 {
-            novaMateria.notaFaltando = (7 - mediaAtual)
+            novaMateria.notaFaltando = (35 - notaN1*2)/3
         } else {
             novaMateria.notaFaltando = 0
         }
         
-        if soma >= 15 && soma <= 35 {
+        if soma >= 15 && soma < 35 {
             novaMateria.mediaFinal = (mediaAtual + notaAF)/2
             
         } else {
@@ -62,18 +62,15 @@ class MateriaViewModel: ObservableObject {
         editMateria.mediaAtual = mediaAtual
         
         if mediaAtual <= 7 {
-            
-            editMateria.notaFaltando = (7 - mediaAtual)
+            editMateria.notaFaltando = (35 - notaN1*2)/3
             
         } else {
-            
             editMateria.notaFaltando = 0
-            
         }
         
-        if soma >= 15 && soma <= 35 {
+        if soma >= 15 && soma < 35 {
             
-            editMateria.mediaFinal = (mediaAtual + notaAF)/2
+            editMateria.mediaFinal = 10 - mediaAtual
             
         } else {
             editMateria.mediaFinal = 0

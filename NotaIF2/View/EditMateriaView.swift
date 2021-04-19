@@ -22,6 +22,7 @@ struct EditMateriaView: View {
     @State var notaN2 = ""
     @State var notaAF = ""
     @State var presentingToast = false
+    @State var play = 0
     
     var notaN1FormattedTeste: Double {
             return (Double(notaN1) ?? 0) / 100
@@ -121,6 +122,14 @@ struct EditMateriaView: View {
             .navigationTitle("Editar")
             .navigationBarItems(trailing: trailingButtom)
             
+            .toast(isPresented: $presentingToast) {
+                ToastView{
+                    ZStack {
+                        LottieView(name: "save", play: $play)
+                        .frame(width: 100, height: 100)
+                    }
+                }.colorScheme(.light)
+            }
             
         }.clipped()
         .background(Image("Background")
@@ -155,7 +164,13 @@ struct EditMateriaView: View {
             
             materiaViewModel.editSave(edit: editDataMateria ,nome: nome, notaN1: notaN1Formatted, notaN2: notaN2Formatted, notaAF: notaAFFormatted, viewContext: viewContext)
             
-            self.presentationMode.wrappedValue.dismiss()
+            presentingToast = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                presentingToast = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
         }) {
             Text("OK")
             }.foregroundColor(.actionColor)

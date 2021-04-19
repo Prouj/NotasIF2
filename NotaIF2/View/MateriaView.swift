@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import Combine
+import ToastUI
 
 struct MateriaView: View {
  
     @Environment(\.managedObjectContext) private var viewContext
-    
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) var presentationMode2
     var dataMateria = Materia()
     
     @ObservedObject private var materiaViewModel: MateriaViewModel = MateriaViewModel()
     @State var edit = false
+    @State var presentingToast = false
+    @State var presentingToast2 = false
+    @State var play = 0
     
     var body: some View {
         VStack {
@@ -48,7 +54,7 @@ struct MateriaView: View {
                     
                             VStack {
                                 
-                                Text("Quanto Falta")
+                                Text("Esperado(N2)")
                                     .fontWeight(.medium)
                                     .foregroundColor(.black)
                                     .font(.system(size: 15))
@@ -65,7 +71,7 @@ struct MateriaView: View {
                         
                         VStack {
                             
-                            Text("Média AF")
+                            Text("Esperado(AF)")
                                 .fontWeight(.medium)
                                 .foregroundColor(.black)
                                 .font(.system(size: 15))
@@ -101,65 +107,106 @@ struct MateriaView: View {
                     .font(.system(size: 20, weight: .regular, design: .default))
                     .foregroundColor(.black)
                 
-                ZStack {
-                    HStack {
+                
                         Text(String(format: "%.2f", dataMateria.notaN1))
                             .fontWeight(.medium)
                             .foregroundColor(.black)
                             .font(.system(size: 20))
                             .padding([.leading, .trailing], 20)
                             .padding(.vertical, 10)
-                    }
                     
-                }.background(LinearGradient(gradient: Gradient(colors: [.cardGrad1, .cardGrad2]), startPoint: .topLeading, endPoint: .bottomTrailing).blur(radius: 3.0))
-                .border(LinearGradient(gradient: Gradient(colors: [.BorderCard1, .BorderCard2]), startPoint: .topLeading, endPoint: .bottom))
-                .cornerRadius(5)
-                .padding(.top, 10)
-                .padding(.bottom,20)
-                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 4)
+                    
+                
 
                 Text("Segunda Etapa:")
                     .font(.system(size: 20, weight: .regular, design: .default))
                     .foregroundColor(.black)
                 
-                ZStack {
-                    HStack {
+//                ZStack {
+//                    HStack {
                         Text(String(format: "%.2f", dataMateria.notaN2))
                             .fontWeight(.medium)
                             .foregroundColor(.black)
                             .font(.system(size: 20))
                             .padding([.leading, .trailing], 20)
                             .padding(.vertical, 10)
-                    }
-                }.background(LinearGradient(gradient: Gradient(colors: [.cardGrad1, .cardGrad2]), startPoint: .topLeading, endPoint: .bottomTrailing).blur(radius: 3.0))
-                .border(LinearGradient(gradient: Gradient(colors: [.BorderCard1, .BorderCard2]), startPoint: .topLeading, endPoint: .bottom))
-                .cornerRadius(5)
-                .padding(.top, 10)
-                .padding(.bottom,20)
-                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 4)
+//                    }
+//                }.background(LinearGradient(gradient: Gradient(colors: [.cardGrad1, .cardGrad2]), startPoint: .topLeading, endPoint: .bottomTrailing).blur(radius: 3.0))
+//                .border(LinearGradient(gradient: Gradient(colors: [.BorderCard1, .BorderCard2]), startPoint: .topLeading, endPoint: .bottom))
+//                .cornerRadius(5)
+//                .padding(.top, 10)
+//                .padding(.bottom,20)
+//                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 4)
                    
                 Text("Avalição Final:")
                     .font(.system(size: 20, weight: .regular, design: .default))
                     .foregroundColor(.black)
                 
-                ZStack {
-                    HStack {
+                
                         Text(String(format: "%.2f",dataMateria.notaAF))
                             .fontWeight(.medium)
                             .foregroundColor(.black)
                             .font(.system(size: 20))
                             .padding([.leading, .trailing], 20)
                             .padding(.vertical, 10)
-                    }
-                }.background(LinearGradient(gradient: Gradient(colors: [.cardGrad1, .cardGrad2]), startPoint: .topLeading, endPoint: .bottomTrailing).blur(radius: 3.0))
-                .border(LinearGradient(gradient: Gradient(colors: [.BorderCard1, .BorderCard2]), startPoint: .topLeading, endPoint: .bottom))
-                .cornerRadius(5)
-                .padding(.top, 10)
-//                .padding(.bottom, 10)
-                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 4)
                 Spacer()
 
             }
+            
+            .toast(isPresented: $presentingToast) {
+                  ToastView {
+                    VStack {
+                      Text("Certeza que deseja deletar essa matéria?")
+                        .padding(.bottom, 10)
+                        .padding(.horizontal, 10)
+                        .multilineTextAlignment(.center)
+
+                        HStack {
+                            Button {
+
+                              presentingToast2 = true
+                              presentingToast = false
+                              DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                  presentingToast2 = false
+                                  DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                      presentingToast = false
+                                  }
+                              }
+                              DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                  materiaViewModel.delete(delete: dataMateria, viewContext: viewContext)
+                              }
+                                  
+                                     
+                              
+                              
+                            } label: {
+                              Text("Deletar")
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding(.horizontal)
+                                .padding(.vertical, 12.0)
+                                .background(Color.accentColor)
+                                .cornerRadius(8.0)
+                            }
+                            
+                            Button {
+                              presentingToast = false
+                                  
+                              
+                            } label: {
+                              Text("Cancelar")
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding(.horizontal)
+                                .padding(.vertical, 12.0)
+                                .background(Color.accentColor)
+                                .cornerRadius(8.0)
+                            }
+                        }
+                    }
+                  }.colorScheme(.light)
+            }
+
 
         }
         .clipped()
@@ -182,7 +229,7 @@ struct MateriaView: View {
     var trailingButton: some View {
         Menu {
             Button(action: { print("deletei")
-                materiaViewModel.delete(delete: dataMateria, viewContext: viewContext)
+                presentingToast = true
             }) {
                 
                 Label("Deletar", systemImage: "trash")
@@ -226,4 +273,3 @@ struct Materia_Previews: PreviewProvider {
         .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
-

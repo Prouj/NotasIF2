@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A40206ED25F2FDF700A28465 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A40206EC25F2FDF700A28465 /* Lottie */; };
+		A40206F325F2FE3600A28465 /* save.json in Resources */ = {isa = PBXBuildFile; fileRef = A40206F225F2FE3600A28465 /* save.json */; };
+		A40206FD25F2FF0E00A28465 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40206FC25F2FF0E00A28465 /* LottieView.swift */; };
 		A40FC17B25D1617600DF2267 /* NotaIF2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC17A25D1617600DF2267 /* NotaIF2App.swift */; };
 		A40FC17F25D1617800DF2267 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A40FC17E25D1617800DF2267 /* Assets.xcassets */; };
 		A40FC18225D1617800DF2267 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A40FC18125D1617800DF2267 /* Preview Assets.xcassets */; };
@@ -24,6 +27,8 @@
 		A40FC1DD25D1DE8600DF2267 /* EditMateriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40FC1DC25D1DE8600DF2267 /* EditMateriaView.swift */; };
 		A40FC1F725D2ADA800DF2267 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A40FC1F625D2ADA800DF2267 /* .gitignore */; };
 		A40FC20325D2B9F900DF2267 /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = A40FC20225D2B9F900DF2267 /* ToastUI */; };
+		A4364DB025F467A0003FBDD7 /* trash.json in Resources */ = {isa = PBXBuildFile; fileRef = A4364DAF25F467A0003FBDD7 /* trash.json */; };
+		A4364DC525F4725E003FBDD7 /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = A4364DC425F4725E003FBDD7 /* error.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A40206F225F2FE3600A28465 /* save.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = save.json; sourceTree = "<group>"; };
+		A40206FC25F2FF0E00A28465 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		A40FC17725D1617600DF2267 /* NotaIF2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotaIF2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A40FC17A25D1617600DF2267 /* NotaIF2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotaIF2App.swift; sourceTree = "<group>"; };
 		A40FC17E25D1617800DF2267 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,6 +73,8 @@
 		A40FC1D425D1719C00DF2267 /* MateriaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateriaViewModel.swift; sourceTree = "<group>"; };
 		A40FC1DC25D1DE8600DF2267 /* EditMateriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMateriaView.swift; sourceTree = "<group>"; };
 		A40FC1F625D2ADA800DF2267 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		A4364DAF25F467A0003FBDD7 /* trash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trash.json; sourceTree = "<group>"; };
+		A4364DC425F4725E003FBDD7 /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A40FC20325D2B9F900DF2267 /* ToastUI in Frameworks */,
+				A40206ED25F2FDF700A28465 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +104,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A40206F125F2FE0500A28465 /* animation  */ = {
+			isa = PBXGroup;
+			children = (
+				A40206F225F2FE3600A28465 /* save.json */,
+				A4364DAF25F467A0003FBDD7 /* trash.json */,
+				A4364DC425F4725E003FBDD7 /* error.json */,
+			);
+			path = "animation ";
+			sourceTree = "<group>";
+		};
 		A40FC16E25D1617600DF2267 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +137,7 @@
 		A40FC17925D1617600DF2267 /* NotaIF2 */ = {
 			isa = PBXGroup;
 			children = (
+				A40206F125F2FE0500A28465 /* animation  */,
 				A40FC1AF25D161BF00DF2267 /* ViewModel */,
 				A40FC1AE25D161A700DF2267 /* View */,
 				A40FC1AD25D1619F00DF2267 /* Model */,
@@ -174,6 +195,7 @@
 				A40FC1BD25D1621400DF2267 /* MateriaView.swift */,
 				A40FC1C225D1624000DF2267 /* SaveMateriaView.swift */,
 				A40FC1DC25D1DE8600DF2267 /* EditMateriaView.swift */,
+				A40206FC25F2FF0E00A28465 /* LottieView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -204,6 +226,7 @@
 			name = NotaIF2;
 			packageProductDependencies = (
 				A40FC20225D2B9F900DF2267 /* ToastUI */,
+				A40206EC25F2FDF700A28465 /* Lottie */,
 			);
 			productName = NotaIF2;
 			productReference = A40FC17725D1617600DF2267 /* NotaIF2.app */;
@@ -277,6 +300,7 @@
 			mainGroup = A40FC16E25D1617600DF2267;
 			packageReferences = (
 				A40FC20125D2B9F900DF2267 /* XCRemoteSwiftPackageReference "ToastUI" */,
+				A40206EB25F2FDF700A28465 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = A40FC17825D1617600DF2267 /* Products */;
 			projectDirPath = "";
@@ -294,7 +318,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4364DC525F4725E003FBDD7 /* error.json in Resources */,
+				A40206F325F2FE3600A28465 /* save.json in Resources */,
 				A40FC18225D1617800DF2267 /* Preview Assets.xcassets in Resources */,
+				A4364DB025F467A0003FBDD7 /* trash.json in Resources */,
 				A40FC1F725D2ADA800DF2267 /* .gitignore in Resources */,
 				A40FC17F25D1617800DF2267 /* Assets.xcassets in Resources */,
 			);
@@ -332,6 +359,7 @@
 				A40FC1CC25D16A0300DF2267 /* Materia+CoreDataClass.swift in Sources */,
 				A40FC1D525D1719C00DF2267 /* MateriaViewModel.swift in Sources */,
 				A40FC1BE25D1621400DF2267 /* MateriaView.swift in Sources */,
+				A40206FD25F2FF0E00A28465 /* LottieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +517,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"NotaIF2/Preview Content\"";
 				DEVELOPMENT_TEAM = Y8XB2TQUP3;
 				ENABLE_PREVIEWS = YES;
@@ -511,6 +540,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_ASSET_PATHS = "\"NotaIF2/Preview Content\"";
 				DEVELOPMENT_TEAM = Y8XB2TQUP3;
 				ENABLE_PREVIEWS = YES;
@@ -653,6 +683,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A40206EB25F2FDF700A28465 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.1;
+			};
+		};
 		A40FC20125D2B9F900DF2267 /* XCRemoteSwiftPackageReference "ToastUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/quanshousio/ToastUI";
@@ -664,6 +702,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A40206EC25F2FDF700A28465 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A40206EB25F2FDF700A28465 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		A40FC20225D2B9F900DF2267 /* ToastUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A40FC20125D2B9F900DF2267 /* XCRemoteSwiftPackageReference "ToastUI" */;

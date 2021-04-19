@@ -14,6 +14,7 @@ struct SaveMateriaView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.presentationMode) var presentationMode2
+    @Environment(\.presentationMode) var presentationMode3
     @State private var materia: Materia = Materia()
     @ObservedObject private var materiaViewModel: MateriaViewModel = MateriaViewModel()
     
@@ -23,6 +24,8 @@ struct SaveMateriaView: View {
     @State var notaAF = ""
     @State var presentingToast = false
     @State var presentingToast2 = false
+    @State var presentingToast3 = false
+    @State var play = 0
     
     var notaN1FormattedTeste: Double {
             return (Double(notaN1) ?? 0) / 100
@@ -131,7 +134,9 @@ struct SaveMateriaView: View {
             .toast(isPresented: $presentingToast) {
                   ToastView {
                     VStack {
-                      Text("Olá, antes de salvar dê um nome à matéria.\n🙃")
+                        LottieView(name: "error", play: $play)
+                            .frame(width: 50, height: 50)
+                      Text("Olá, antes de salvar\n dê um nome à matéria.")
                         .padding(.bottom, 10)
                         .padding(.horizontal, 10)
                         .multilineTextAlignment(.center)
@@ -146,15 +151,19 @@ struct SaveMateriaView: View {
                           .padding(.vertical, 12.0)
                           .background(Color.accentColor)
                           .cornerRadius(8.0)
+                        
                       }
                     }
-                  }.colorScheme(.light)
+                  }
+                  .colorScheme(.light)
             }
             
             .toast(isPresented: $presentingToast2) {
                   ToastView {
                     VStack {
-                      Text("Olá, as notas devem ter um valor de 0 a 10.\n🙃")
+                        LottieView(name: "error", play: $play)
+                            .frame(width: 50, height: 50)
+                      Text("Olá, as notas devem ter\n um valor de 0 a 10.")
                         .padding(.bottom, 10)
                         .padding(.horizontal, 10)
                         .multilineTextAlignment(.center)
@@ -172,7 +181,19 @@ struct SaveMateriaView: View {
                       }
                     }
                   }.colorScheme(.light)
+                 
             }
+            
+            .toast(isPresented: $presentingToast3) {
+                ToastView{
+                    ZStack {
+                        LottieView(name: "save", play: $play)
+                        .frame(width: 100, height: 100)
+                    }
+                }.colorScheme(.light)
+            }
+            
+
             
             
         }.clipped()
@@ -183,7 +204,13 @@ struct SaveMateriaView: View {
         .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     }
     
+//    var popUP: some View {
+//
+//
+//    }
+    
     var trailingButtom: some View {
+            
         Button(action: {
             if nome.count == 0 {
                 presentingToast = true
@@ -195,10 +222,17 @@ struct SaveMateriaView: View {
                     var notaAFFormatted = notaAFFormattedTeste
                     
                     materiaViewModel.save(nome: nome, notaN1: notaN1Formatted, notaN2: notaN2Formatted, notaAF: notaAFFormatted, viewContext: viewContext)
-                    self.presentationMode.wrappedValue.dismiss()
+                    presentingToast3 = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                        presentingToast3 = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    }
                 } else {
                     presentingToast2 = true
                 }
+//                presentingToast3 = false
             }
         }) {
             Text("OK")
@@ -207,6 +241,87 @@ struct SaveMateriaView: View {
 
 }
 
+//struct ToastViewContent: View {
+//    @Binding var presentingToast: Bool
+//    @Binding var presentingAnimation: Bool
+//    @State var deuRuim: Bool = false
+//
+//    @Environment(\.managedObjectContext) private var viewContext
+//    @ObservedObject private var materiaViewModel: MateriaViewModel = MateriaViewModel()
+//
+//    var body: some View {
+//
+//                    .toast(isPresented: $deuRuim) {
+//                        ToastView {
+//                            VStack {
+//                                Text("Os valores estão conflitantes.")
+//                                    .padding(.bottom)
+//                                    .multilineTextAlignment(.center)
+//                                    .frame(width: 200, height: 100)
+//
+//                                Button {
+//                                    deuRuim = false
+//                                } label: {
+//                                    Text("OK")
+//                                        .bold()
+//                                        .foregroundColor(.white)
+//                                        .padding(.horizontal)
+//                                        .padding(.vertical, 12.0)
+//                                        .background(Color(UIColor.systemRed).opacity(0.9))
+//                                        .cornerRadius(10)
+//                                }.padding(.bottom, 10)
+//                            }
+//                        }
+//                    }
+//
+//                    Button(action: {
+//                        if modo == "Retirar" {
+//                            if valorRetir < 0 {
+//                                deuRuim = true
+//                            } else {
+//                                objetivo.valorDepositado -= valorFormatted
+//                            }
+//                        } else {
+//                            if valorDeposit > objetivo.valorTotal {
+//                                deuRuim = true
+//                            } else {
+//                                objetivo.valorDepositado += valorFormatted
+//                            }
+//                        }
+//                        if !deuRuim {
+//                            objetivoViewModel.update(viewContext: viewContext, objetivo: objetivo)
+//                            valor = ""
+//                            presentingAnimation = true
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
+//                                presentingToast = false
+//                                presentingAnimation = false
+//                            }
+//                        }
+//                    }) {
+//                        ZStack {
+//                            RoundedRectangle(cornerRadius: 10)
+//                                .foregroundColor(.darkGreen)
+//                                .overlay(
+//                                    RoundedRectangle(cornerRadius: 10)
+//                                        .stroke(Color.darkGreen, lineWidth: 0.5)
+//                                )
+//                                .frame(width: 90, height: 34)
+//                            Text(modo)
+//                                .foregroundColor(.white)
+//                                .font(.system(size: 17, weight: .regular, design: .default))
+//                        }
+//                    }
+//                }.padding(.top, 20)
+//            }
+//            .padding(.vertical, 15)
+//
+//        } else {
+//            LottieView(name: "animation", play: $isShowing)
+//                .frame(width: 200, height: 200)
+//        }
+//
+//    }
+//}
 
 struct SaveMateriaView_Previews: PreviewProvider {
     static var previews: some View {
